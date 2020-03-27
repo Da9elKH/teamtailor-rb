@@ -3,6 +3,7 @@
 require 'teamtailor/request'
 
 module Teamtailor
+  # Class for interacting with the Teamtailor API
   class Client
     def initialize(base_url:, api_token:, api_version:)
       @base_url = base_url
@@ -10,6 +11,10 @@ module Teamtailor
       @api_version = api_version
     end
 
+    # Fetches a paginated result from the API.
+    #
+    # @param page [Integer] the current page to fetch
+    # @return [Teamtailor::PageResult] a page of results
     def candidates(page: 1)
       Teamtailor::Request.new(
         base_url: base_url,
@@ -23,6 +28,10 @@ module Teamtailor
       ).call
     end
 
+    # Fetches a paginated result from the API.
+    #
+    # @param page [Integer] the current page to fetch
+    # @return [Teamtailor::PageResult] a page of jobs
     def jobs(page: 1)
       Teamtailor::Request.new(
         base_url: base_url,
@@ -36,6 +45,10 @@ module Teamtailor
       ).call
     end
 
+    # Fetches a paginated result from the API.
+    #
+    # @param page [Integer] the current page to fetch
+    # @return [Teamtailor::PageResult] a page of users
     def users(page: 1)
       Teamtailor::Request.new(
         base_url: base_url,

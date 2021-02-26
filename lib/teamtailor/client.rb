@@ -57,16 +57,22 @@ module Teamtailor
         { "filter[#{key}]" => filters[key] }
       end
 
+      params = {
+          "page[number]" => page,
+          "page[size]" => 30,
+          "include" => include.join(","),
+      }
+
+      if filter_params.present?
+        params.merge!(*filter_params)
+      end
+
       Teamtailor::Request.new(
         base_url: base_url,
         api_token: api_token,
         api_version: api_version,
         path: "/v1/jobs",
-        params: {
-          "page[number]" => page,
-          "page[size]" => 30,
-          "include" => include.join(","),
-        }.merge(*filter_params)
+        params: params
       ).call
     end
 

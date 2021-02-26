@@ -66,7 +66,7 @@ module Teamtailor
           'page[number]' => page,
           'page[size]' => 30,
           'include' => include.join(','),
-        }.merge(*filter_params)
+        }#.merge(*filter_params)
       ).call
     end
 
@@ -82,6 +82,31 @@ module Teamtailor
           'include' => include.join(',')
         }
       ).call
+    end
+
+    def create_upload(candidate_id, **args)
+      Teamtailor::Request.new(
+          base_url: base_url,
+          api_token: api_token,
+          api_version: api_version,
+          path: '/v1/uploads',
+          method: :post,
+          body: {
+              data: {
+                  type: "uploads",
+                  attributes: args.transform_keys{ |k| k.to_s.gsub("_", "-") },
+                  relationships: {
+                      candidate: {
+                          data: {
+                              id: candidate_id,
+                              type: "candidates"
+                          }
+                      }
+                  }
+              }
+          }
+      )
+
     end
 
     def create_job_application(candidate_id:, job_id:, **args)

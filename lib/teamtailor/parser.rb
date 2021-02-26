@@ -25,26 +25,27 @@ module Teamtailor
 
     def parse
       data.map do |record|
-        case record&.dig('type')
-        when 'candidates' then Teamtailor::Candidate.new(record, included)
-        when 'jobs' then Teamtailor::Job.new(record, included)
-        when 'users' then Teamtailor::User.new(record, included)
-        when 'job-applications' then Teamtailor::JobApplication.new(record, included)
-        when 'companies' then Teamtailor::Company.new(record, included)
-        when 'stages' then Teamtailor::Stage.new(record, included)
-        when 'reject-reasons' then Teamtailor::RejectReason.new(record, included)
-        when 'departments' then Teamtailor::Department.new(record, included)
-        when 'locations' then Teamtailor::Location.new(record, included)
-        when 'custom-fields' then Teamtailor::CustomField.new(record, included)
-        when 'custom-field-values' then Teamtailor::CustomFieldValue.new(record, included)
-        when 'referrals' then Teamtailor::Referral.new(record, included)
-        when 'partner-results' then Teamtailor::PartnerResult.new(record, included)
-        when 'requisitions' then Teamtailor::Requisition.new(record, included)
-        when 'requisition-step-verdicts' then Teamtailor::RequisitionStepVerdict.new(record, included)
+        case record&.dig("type")
+        when "candidates" then Teamtailor::Candidate.new(record, included)
+        when "jobs" then Teamtailor::Job.new(record, included)
+        when "users" then Teamtailor::User.new(record, included)
+        when "job-applications" then Teamtailor::JobApplication.new(record, included)
+        when "companies" then Teamtailor::Company.new(record, included)
+        when "stages" then Teamtailor::Stage.new(record, included)
+        when "reject-reasons" then Teamtailor::RejectReason.new(record, included)
+        when "departments" then Teamtailor::Department.new(record, included)
+        when "locations" then Teamtailor::Location.new(record, included)
+        when "custom-fields" then Teamtailor::CustomField.new(record, included)
+        when "custom-field-selects" then Teamtailor::CustomField.new(record, included)
+        when "custom-field-values" then Teamtailor::CustomFieldValue.new(record, included)
+        when "referrals" then Teamtailor::Referral.new(record, included)
+        when "partner-results" then Teamtailor::PartnerResult.new(record, included)
+        when "requisitions" then Teamtailor::Requisition.new(record, included)
+        when "requisition-step-verdicts" then Teamtailor::RequisitionStepVerdict.new(record, included)
         when 'uploads' then Teamtailor::Upload.new(record, included)
 
         else
-          raise Teamtailor::UnknownResponseTypeError, record&.dig('type')
+          raise Teamtailor::UnknownResponseTypeError, record&.dig("type")
         end
       end
     end
@@ -58,11 +59,11 @@ module Teamtailor
     end
 
     def data
-      [payload&.dig('data')].flatten
+      [payload&.dig("data")].flatten
     end
 
     def included
-      payload&.dig('included')
+      payload&.dig("included")
     end
   end
 end

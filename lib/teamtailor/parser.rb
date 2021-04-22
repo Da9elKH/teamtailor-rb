@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-require 'teamtailor/parser/candidate'
-require 'teamtailor/parser/job'
-require 'teamtailor/parser/user'
-require 'teamtailor/parser/job_application'
-require 'teamtailor/parser/company'
-require 'teamtailor/parser/stage'
-require 'teamtailor/parser/reject_reason'
-require 'teamtailor/parser/department'
-require 'teamtailor/parser/location'
-require 'teamtailor/parser/custom_field'
-require 'teamtailor/parser/custom_field_value'
-require 'teamtailor/parser/referral'
-require 'teamtailor/parser/partner_result'
-require 'teamtailor/parser/requisition'
-require 'teamtailor/parser/requisition_step_verdict'
-require 'teamtailor/parser/upload'
+require "teamtailor/parser/candidate"
+require "teamtailor/parser/job"
+require "teamtailor/parser/user"
+require "teamtailor/parser/job_application"
+require "teamtailor/parser/company"
+require "teamtailor/parser/stage"
+require "teamtailor/parser/reject_reason"
+require "teamtailor/parser/department"
+require "teamtailor/parser/location"
+require "teamtailor/parser/custom_field"
+require "teamtailor/parser/custom_field_value"
+require "teamtailor/parser/referral"
+require "teamtailor/parser/partner_result"
+require "teamtailor/parser/requisition"
+require "teamtailor/parser/requisition_step_verdict"
+require "teamtailor/parser/upload"
 
 module Teamtailor
   class Parser

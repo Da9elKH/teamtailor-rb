@@ -1,6 +1,5 @@
 ## Unreleased
-- Added `Client#create_candidate`
-- Added `Client#create_job_application`
+- Added `Teamtailor::Upload` and `Client#create_upload`
 
 ## v0.3.3 - 2021-03-10
 

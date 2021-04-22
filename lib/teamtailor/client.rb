@@ -36,7 +36,7 @@ module Teamtailor
       ).call
     end
 
-    def create_candidate(attributes:)
+    def create_candidate(attributes:, relationships:)
       Teamtailor::Request.new(
           base_url: base_url,
           api_token: api_token,
@@ -47,32 +47,25 @@ module Teamtailor
               data: {
                   type: "candidates",
                   attributes: attributes.transform_keys { |k| k.to_s.gsub("_", "-") },
+                  relationships: relationships,
               },
           }
       ).call
     end
 
     def jobs(page: 1, include: [], filters: {})
-      filter_params = filters.keys.map do |key|
-        { "filter[#{key}]" => filters[key] }
-      end
-
-      params = {
-          "page[number]" => page,
-          "page[size]" => 30,
-          "include" => include.join(","),
-      }
-
-      if filter_params.present?
-        params.merge!(*filter_params)
-      end
+      filter_params = filters.transform_keys { |key| "filter[#{key}]" }
 
       Teamtailor::Request.new(
         base_url: base_url,
         api_token: api_token,
         api_version: api_version,
         path: "/v1/jobs",
-        params: params
+        params: {
+          "page[number]" => page,
+          "page[size]" => 30,
+          "include" => include.join(","),
+        }.merge(filter_params)
       ).call
     end
 
